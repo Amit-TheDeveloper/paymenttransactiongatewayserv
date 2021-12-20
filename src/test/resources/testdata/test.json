@@ -1,0 +1,19 @@
+{
+    "retrievalNo": "123456",
+    "transactionID": 223344,
+    "amount": {
+        "txnAmount": 128.7,
+        "currencyCode": "840",
+        "isoCurrencyCode": "USD"
+    },
+    "cardHolder": {
+      "name": "amit",
+      "email": "abc@gmail.com",
+      "phoneNo": "9876543"
+    },
+    "cardInstrument": {
+    	"cardNo": "4545454545",
+    	"cvv": "123",
+    	"instrumentType": "CREDIT_CARD"
+    }
+}

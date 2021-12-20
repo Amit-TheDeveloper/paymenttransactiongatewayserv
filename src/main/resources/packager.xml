@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--DOCTYPE isopackager SYSTEM "generic_packager.dtd"-->
+<!DOCTYPE isopackager [
+<!ELEMENT isopackager (isofield+, isofieldvalidator*, isofieldpackager*)*>
+<!ATTLIST isopackager maxValidField CDATA        #IMPLIED>
+<!ATTLIST isopackager bitmapField   CDATA        #IMPLIED>
+<!ATTLIST isopackager firstField    CDATA        #IMPLIED>
+<!ATTLIST isopackager emitBitmap    (true|false) #IMPLIED>
+<!ATTLIST isopackager headerLength  CDATA        #IMPLIED>
+
+<!-- isofield -->
+<!ELEMENT isofield (isofieldvalidator?)>
+<!ATTLIST isofield id     CDATA        #REQUIRED>
+<!ATTLIST isofield length CDATA        #REQUIRED>
+<!ATTLIST isofield name   CDATA        #REQUIRED>
+<!ATTLIST isofield class  NMTOKEN      #REQUIRED>
+<!ATTLIST isofield token  CDATA        #IMPLIED>
+<!ATTLIST isofield pad    (true|false) #IMPLIED>
+<!ATTLIST isofield info   CDATA        #IMPLIED>
+
+<!-- isofieldpackager -->
+<!ELEMENT isofieldpackager (isofield*,isofieldpackager*, isovalidator?, isofieldvalidator*)*>
+<!ATTLIST isofieldpackager id       CDATA        #REQUIRED>
+<!ATTLIST isofieldpackager name     CDATA        #REQUIRED>
+<!ATTLIST isofieldpackager length   CDATA        #REQUIRED>
+<!ATTLIST isofieldpackager class    NMTOKEN      #REQUIRED>
+<!ATTLIST isofieldpackager token    CDATA        #IMPLIED>
+<!ATTLIST isofieldpackager pad      (true|false) #IMPLIED>
+<!ATTLIST isofieldpackager packager NMTOKEN      #REQUIRED>
+<!ATTLIST isofieldpackager emitBitmap (true|false) #IMPLIED>
+<!ATTLIST isofieldpackager maxValidField CDATA        #IMPLIED>
+<!ATTLIST isofieldpackager bitmapField CDATA        #IMPLIED>
+<!ATTLIST isofieldpackager firstField  CDATA        #IMPLIED>
+<!ATTLIST isofieldpackager headerLength  CDATA        #IMPLIED>
+<!ATTLIST isofieldpackager validator NMTOKEN      #IMPLIED>
+
+<!-- isofieldvalidator -->
+<!ELEMENT isofieldvalidator EMPTY>
+<!ATTLIST isofieldvalidator class  NMTOKEN      #REQUIRED>
+<!ATTLIST isofieldvalidator break-on-error (true|false) #IMPLIED>
+<!ATTLIST isofieldvalidator minlen CDATA #IMPLIED>
+<!ATTLIST isofieldvalidator maxlen CDATA #IMPLIED>
+
+<!-- isovalidator -->
+<!ELEMENT isovalidator EMPTY>
+<!ATTLIST isovalidator class  NMTOKEN      #REQUIRED>
+<!ATTLIST isovalidator break-on-error (true|false) #IMPLIED>
+]>
+<isopackager>
+	<isofield id="0" length="4" class="org.jpos.iso.IFB_NUMERIC"
+		pad="false" name="Message Type Indicator" />
+	<isofield id="1" length="16" class="org.jpos.iso.IFB_BITMAP"
+		pad="false" name="Bitmap" />
+	<isofield id="2" length="19" class="org.jpos.iso.IFB_LLNUM"
+		pad="false" name="Account number" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="19" minlen="1" />
+	<isofield id="3" length="6" class="org.jpos.iso.IFB_NUMERIC"
+		pad="true" name="Processing Code" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="6" minlen="6" />
+	<isofield id="4" length="12"
+		class="org.jpos.iso.IFB_AMOUNT2003" pad="true"
+		name="Transaction Amount" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="12" minlen="1" />
+	<isofield id="7" length="10" class="org.jpos.iso.IFB_NUMERIC"
+		pad="true" name="Transmission Date and time" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="10" minlen="10" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="6" minlen="6" />
+	<isofield id="12" length="6" class="org.jpos.iso.IFB_NUMERIC"
+		pad="true" name="Time, Local transmission" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="6" minlen="6" />
+	<isofield id="14" length="4" class="org.jpos.iso.IFB_NUMERIC"
+		pad="true" name="Card Expiration Date" />
+	<isofieldvalidator class="org.jpos.iso.IVA_NUM"
+		break-on-error="false" maxlen="4" minlen="4" />
+	<isofield id="18" length="4" class="org.jpos.iso.IFB_NUMERIC"
+		pad="true" name="Merchant Category Code" />
+	<isofield id="42" length="12" class="org.jpos.iso.IFB_LLNUM"
+		pad="true" name="Merchant ID" />
+</isopackager>
